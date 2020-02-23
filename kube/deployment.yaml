@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: pacmangit
+  name: pacmangit
+  labels:
+    app: pacmangit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: pacmangit
+  template:
+    metadata:
+      labels:
+        name: pacmangit
+    spec:
+      serviceAccount: pacmangit
+      containers:
+      - image: docker.io/rfontain/pacman:v1
+        imagePullPolicy: Always
+        name: pacmangit
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MONGO_SERVICE_HOST
+          # Single member MongoDB
+          # value: primarymongohere
+          # Replicaset (federated) MongoDB
+          value: b8eec768-c48d-4022-9c32-b6083afed0c9-0.bngflf7f0ktkmkdl3jhg.databases.appdomain.cloud
+          # Comment out MONGO_REPLICA_SET for the single-member Mongo
+        - name: MONGO_AUTH_USER 
+          value: ibm_cloud_82d27531_5290_4a59_b1c4_5cbef1154ea3
+        - name: MONGO_REPLICA_SET
+          value: replset
+        - name: MONGO_AUTH_PWD
+          value: f197cc208307f82e2e0de68b781f7a128cf6a98eed3e38e10fcf2309c6e91455
+        - name: MONGO_DATABASE
+          value: admin
+        - name: MY_MONGO_PORT
+          value: "30692"
+        - name: MONGO_USE_SSL
+          value: "true"
+        - name: MONGO_VALIDATE_SSL
+          value: "false"
+        - name: MY_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        #rouge
+        - name: COLOR
+          #value: "rgb(197, 33, 33)"
+        #bleue
+          value: "rgb(59, 108, 170)"
+        - name: MY_IMAGE
+          value: ibm
+        - name: MESSAGE
+          value: "Everything is up2date !"
+
+        

@@ -1,0 +1,86 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: pacmangit
+  namespace: pacmangit
+  generation: 1
+spec:
+  componentKinds:
+    - group: app.ibm.com
+      kind: Subscription
+  descriptor: {}
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - pacmangit
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Subscription
+metadata:
+  name: pacmangit-sub
+  namespace: pacmangit
+  generation: 2
+  labels:
+    app: pacmangit
+spec:
+  channel: pacmangit/pacmangit
+  placement:
+    placementRef:
+      name: pacmangit-pr
+      kind: PlacementRule
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: PlacementRule
+metadata:
+  name: pacmangit-pr
+  namespace: pacmangit
+  generation: 6
+spec:
+  clusterLabels:
+    matchLabels:
+      environment: dev
+  clusterReplicas: 1
+---
+apiVersion: app.ibm.com/v1alpha1
+kind: Subscription
+metadata:
+  name: pacmangit-sub
+  namespace: pacmangit
+  generation: 1
+  labels:
+    app: pacmangit
+spec:
+  channel: pacmangit/pacmangit
+  placement:
+    local: true
+    ---
+apiVersion: v1
+kind:   
+metadata:
+  name: pacmangit
+  namespace: pacmangit
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pacmangit
+rules:
+- apiGroups: [""]
+  resources: ["pods","nodes"]
+  verbs: ["get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: pacmangit
+  namespace: pacmangit
+subjects:
+- kind: ServiceAccount
+  name: pacmangit
+  namespace: pacman
+roleRef:
+  kind: ClusterRole
+  name: pacmangit
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,15 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: pacmangit
+  namespace: pacmangit
+spec:
+  host: >-
+    pacmangit-pacmangit.prod2-585724-8a2d3071712c7c965e5501bbbe7f8585-0001.mil01.containers.appdomain.cloud
+  to:
+    kind: Service
+    name: pacmangit
+    weight: 100
+  port:
+    targetPort: 8080
+  wildcardPolicy: None
