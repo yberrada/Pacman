@@ -21,9 +21,9 @@ router.get('/colors',urlencodedParser,function(req,res,next) {
     var color = 'rgb(197, 33, 33)';  //red
   //  var color = 'rgb(59, 108, 170)' //blue
 
-    if (process.env.COLOR) {
-        color = process.env.COLOR;
-    }
+//    if (process.env.COLOR) {
+    //    color = process.env.COLOR;
+  //  }
     // IBM
     // var color = 'rgb(59, 108, 170)';
     console.log("called color : " + color);
