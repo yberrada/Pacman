@@ -14,7 +14,7 @@ router.use(function timeLog (req, res, next) {
     next(); docker / rfontain / pacman
 })
 
-router.get('/colors',urlencodedParser,function(req,res,next) {
+router.get('/color',urlencodedParser,function(req,res,next) {
 
   //  var color = 'rgb(0, 0, 0)';
     // Red Hat
