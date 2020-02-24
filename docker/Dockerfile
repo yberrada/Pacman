@@ -1,3 +1,4 @@
+
 FROM node:boron
 
 MAINTAINER Ivan Font <ifont@redhat.com>
@@ -7,7 +8,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Clone game source code
-RUN git clone https://github.com/rodolphe-fontaine/pacman-1.git  .
+RUN git clone https://github.com/yberrada/Pacman.git  .
 
 # Install app dependencies
 RUN npm install

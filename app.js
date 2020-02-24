@@ -15,6 +15,7 @@ var color_route = require('./routes/color');
 // App
 var app = express();
 
+console.log(color_route);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
