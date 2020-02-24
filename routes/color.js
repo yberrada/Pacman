@@ -16,16 +16,16 @@ router.use(function timeLog (req, res, next) {
 
 router.get('/color',urlencodedParser,function(req,res,next) {
 
-  //  var color = 'rgb(0, 0, 0)';
+    //var color = 'rgb(0, 0, 0)';
     // Red Hat
-    var color = 'rgb(197, 33, 33)';  //red
-  //  var color = 'rgb(59, 108, 170)' //blue
-
-//    if (process.env.COLOR) {
-    //    color = process.env.COLOR;
-  //  }
+    // var color = 'rgb(197, 33, 33)';
+    // if (process.env.COLOR) {
+    //     color = process.env.COLOR;
+    // }
     // IBM
-    // var color = 'rgb(59, 108, 170)';
+
+  //  var color = 'rgb(59, 108, 170)'; // blue
+    var color = 'rgb(59, 108, 170)';  //red
     console.log("called color : " + color);
     //res.status(200);
     res.json(color);

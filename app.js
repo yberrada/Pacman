@@ -28,12 +28,6 @@ app.use('/user', user);
 app.use('/location', loc);
 app.use('/color',color_route);
 
-var color = 'rgb(197, 33, 33)';  //red
-
-app.use('/color',color);
-
-//  var color = 'rgb(59, 108, 170)' //blue
-
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
