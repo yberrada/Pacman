@@ -24,8 +24,8 @@ router.get('/color',urlencodedParser,function(req,res,next) {
     // }
     // IBM
 
-    var color = 'rgb(197, 33, 33)'; // red
-     //var color = 'rgb(59, 108, 170)';  //blue
+    // var color = 'rgb(197, 33, 33)'; // red
+     var color = 'rgb(59, 108, 170)';  //blue
     console.log("called color : " + color);
     //res.status(200);
     res.json(color);
